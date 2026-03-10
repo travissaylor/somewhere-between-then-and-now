@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 02-02-PLAN.md — render pipeline wiring
-last_updated: "2026-03-10T16:52:29.781Z"
+stopped_at: Completed 02-03-PLAN.md — shader warmup gap closure and EffectComposer infrastructure
+last_updated: "2026-03-10T18:25:14.384Z"
 last_activity: 2026-03-10 — Completed 01-02 scroll engine integration
 progress:
   total_phases: 10
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 5
+  completed_plans: 5
   percent: 10
 ---
 
@@ -54,6 +54,7 @@ Progress: [█░░░░░░░░░] 10%
 | Phase 01 P02 | 3min | 2 tasks | 5 files |
 | Phase 02-render-pipeline P01 | 4min | 2 tasks | 14 files |
 | Phase 02-render-pipeline P02 | 5min | 2 tasks | 9 files |
+| Phase 02-render-pipeline P03 | 4min | 1 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,9 @@ Recent decisions affecting current work:
 - [Phase 02-02]: WombGate priority=2 over Compositor priority=1: higher useFrame priority runs after lower, womb quad paints over compositor during birth
 - [Phase 02-02]: Minimum 1800ms womb duration enforced for emotional heartbeat experience even with procedural (instant) asset loads
 - [Phase 02-02]: createPortal per era gives each era isolated THREE.Scene preventing light/camera bleed across render targets
+- [Phase 02-render-pipeline]: Imperative EffectComposer (postprocessing library) used instead of @react-three/postprocessing React components to avoid conflict with manual useFrame render loop
+- [Phase 02-render-pipeline]: rtComposite third render target separates A/B composite from post-processing pass — Phase 9 adds per-era EffectPass instances to this pipeline
+- [Phase 02-render-pipeline]: WombGate receives portalScenes via props ref bridge from Scene.tsx SceneContents, not context — WombGate is a sibling not child of Compositor
 
 ### Pending Todos
 
@@ -92,6 +96,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T16:52:29.779Z
-Stopped at: Completed 02-02-PLAN.md — render pipeline wiring
+Last session: 2026-03-10T18:25:14.381Z
+Stopped at: Completed 02-03-PLAN.md — shader warmup gap closure and EffectComposer infrastructure
 Resume file: None

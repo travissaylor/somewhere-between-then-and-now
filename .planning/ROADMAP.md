@@ -13,7 +13,7 @@ The project builds from the ground up in a strict dependency order: a working sc
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Scroll engine, era store, and responsive layout scaffold producing verified era progress values (completed 2026-03-10)
-- [ ] **Phase 2: Render Pipeline** - RenderTarget A/B compositor, EffectComposer, and asset loading gate proved on one era
+- [x] **Phase 2: Render Pipeline** - RenderTarget A/B compositor, EffectComposer, and asset loading gate proved on one era (completed 2026-03-10)
 - [ ] **Phase 3: Audio Engine** - Tone.js graph with gesture gate, scroll-reactive crossfading, and 13-zone architecture
 - [ ] **Phase 4: Eras — Origins** - Era environments 1-4 (Birth through The Divorce) built on proven scaffold
 - [ ] **Phase 5: Eras — Youth and Identity** - Era environments 5-7 (Teenage Years through Identity Years)
@@ -153,7 +153,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-03-10 |
-| 2. Render Pipeline | 2/3 | Gap closure   | - |
+| 2. Render Pipeline | 3/3 | Complete   | 2026-03-10 |
 | 3. Audio Engine | 0/TBD | Not started | - |
 | 4. Eras — Origins | 0/TBD | Not started | - |
 | 5. Eras — Youth and Identity | 0/TBD | Not started | - |
