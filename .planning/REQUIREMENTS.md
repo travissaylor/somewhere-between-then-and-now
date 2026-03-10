@@ -120,56 +120,56 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase ? | Pending |
-| FOUND-02 | Phase ? | Pending |
-| FOUND-03 | Phase ? | Pending |
-| FOUND-04 | Phase ? | Pending |
-| FOUND-05 | Phase ? | Pending |
-| FOUND-06 | Phase ? | Pending |
-| RNDR-01 | Phase ? | Pending |
-| RNDR-02 | Phase ? | Pending |
-| RNDR-03 | Phase ? | Pending |
-| RNDR-04 | Phase ? | Pending |
-| RNDR-05 | Phase ? | Pending |
-| RNDR-06 | Phase ? | Pending |
-| AUDO-01 | Phase ? | Pending |
-| AUDO-02 | Phase ? | Pending |
-| AUDO-03 | Phase ? | Pending |
-| AUDO-04 | Phase ? | Pending |
-| AUDO-05 | Phase ? | Pending |
-| AUDO-06 | Phase ? | Pending |
-| ERA-01 | Phase ? | Pending |
-| ERA-02 | Phase ? | Pending |
-| ERA-03 | Phase ? | Pending |
-| ERA-04 | Phase ? | Pending |
-| ERA-05 | Phase ? | Pending |
-| ERA-06 | Phase ? | Pending |
-| ERA-07 | Phase ? | Pending |
-| ERA-08 | Phase ? | Pending |
-| ERA-09 | Phase ? | Pending |
-| ERA-10 | Phase ? | Pending |
-| ERA-11 | Phase ? | Pending |
-| ERA-12 | Phase ? | Pending |
-| ERA-13 | Phase ? | Pending |
-| TRNS-01 | Phase ? | Pending |
-| TRNS-02 | Phase ? | Pending |
-| TRNS-03 | Phase ? | Pending |
-| TRNS-04 | Phase ? | Pending |
-| TRNS-05 | Phase ? | Pending |
-| POST-01 | Phase ? | Pending |
-| POST-02 | Phase ? | Pending |
-| POST-03 | Phase ? | Pending |
-| PHOT-01 | Phase ? | Pending |
-| PHOT-02 | Phase ? | Pending |
-| ACCS-01 | Phase ? | Pending |
-| ACCS-02 | Phase ? | Pending |
-| ACCS-03 | Phase ? | Pending |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Pending |
+| RNDR-01 | Phase 2 | Pending |
+| RNDR-02 | Phase 2 | Pending |
+| RNDR-03 | Phase 2 | Pending |
+| RNDR-04 | Phase 2 | Pending |
+| RNDR-05 | Phase 2 | Pending |
+| RNDR-06 | Phase 2 | Pending |
+| AUDO-01 | Phase 3 | Pending |
+| AUDO-02 | Phase 3 | Pending |
+| AUDO-03 | Phase 3 | Pending |
+| AUDO-04 | Phase 3 | Pending |
+| AUDO-05 | Phase 3 | Pending |
+| AUDO-06 | Phase 3 | Pending |
+| ERA-01 | Phase 4 | Pending |
+| ERA-02 | Phase 4 | Pending |
+| ERA-03 | Phase 4 | Pending |
+| ERA-04 | Phase 4 | Pending |
+| ERA-05 | Phase 5 | Pending |
+| ERA-06 | Phase 5 | Pending |
+| ERA-07 | Phase 5 | Pending |
+| ERA-08 | Phase 6 | Pending |
+| ERA-09 | Phase 6 | Pending |
+| ERA-10 | Phase 6 | Pending |
+| ERA-11 | Phase 7 | Pending |
+| ERA-12 | Phase 7 | Pending |
+| ERA-13 | Phase 7 | Pending |
+| TRNS-01 | Phase 8 | Pending |
+| TRNS-02 | Phase 8 | Pending |
+| TRNS-03 | Phase 8 | Pending |
+| TRNS-04 | Phase 8 | Pending |
+| TRNS-05 | Phase 8 | Pending |
+| POST-01 | Phase 9 | Pending |
+| POST-02 | Phase 9 | Pending |
+| POST-03 | Phase 9 | Pending |
+| PHOT-01 | Phase 9 | Pending |
+| PHOT-02 | Phase 6 | Pending |
+| ACCS-01 | Phase 10 | Pending |
+| ACCS-02 | Phase 10 | Pending |
+| ACCS-03 | Phase 10 | Pending |
 
 **Coverage:**
 - v1 requirements: 43 total
-- Mapped to phases: 0
-- Unmapped: 43 ⚠️
+- Mapped to phases: 43
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-10*
-*Last updated: 2026-03-10 after initial definition*
+*Last updated: 2026-03-10 after roadmap creation*
