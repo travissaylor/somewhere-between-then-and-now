@@ -11,6 +11,11 @@ const Scene = dynamic(() => import('@/components/canvas/Scene'), {
   loading: () => null,
 });
 
+// Dynamic import with ssr: false prevents Tone.js from accessing window.AudioContext on the server
+const AudioProvider = dynamic(() => import('@/components/audio/AudioProvider'), {
+  ssr: false,
+});
+
 const scrollHeight = computeScrollHeight();
 
 export default function Home() {
@@ -26,6 +31,7 @@ export default function Home() {
         {/* Future HTML content layers go here */}
       </div>
       <Scene />
+      <AudioProvider />
       <DebugOverlay />
     </>
   );
