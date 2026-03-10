@@ -66,7 +66,10 @@ Plans:
   3. Switching browser tabs pauses audio; returning resumes it without restart
   4. If an audio stem file is missing, the experience continues silently without error or broken state
   5. All 13 audio zones are wired with crossfade overlap regions so no zone boundary is abrupt
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 03-01-PLAN.md — Audio math (gain computation with TDD) and 13-zone configuration
+- [ ] 03-02-PLAN.md — Tone.js AudioEngine singleton, AudioProvider component, page integration
 
 ### Phase 4: Eras — Origins
 **Goal**: Era environments 1-4 (Being Born, Early Childhood, Abuse Era, The Divorce) are fully built and emotionally distinct, each wired to scroll progress on the proven scaffold
@@ -154,7 +157,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-03-10 |
 | 2. Render Pipeline | 3/3 | Complete   | 2026-03-10 |
-| 3. Audio Engine | 0/TBD | Not started | - |
+| 3. Audio Engine | 0/2 | Not started | - |
 | 4. Eras — Origins | 0/TBD | Not started | - |
 | 5. Eras — Youth and Identity | 0/TBD | Not started | - |
 | 6. Eras — Love, Loss, and Rebuilding | 0/TBD | Not started | - |
