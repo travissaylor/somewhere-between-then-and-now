@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-10T16:20:07.549Z"
+stopped_at: Completed 02-01-PLAN.md — logic layer and GPU shaders
+last_updated: "2026-03-10T16:45:04.654Z"
 last_activity: 2026-03-10 — Completed 01-02 scroll engine integration
 progress:
   total_phases: 10
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 4
+  completed_plans: 3
   percent: 10
 ---
 
@@ -52,6 +52,7 @@ Progress: [█░░░░░░░░░] 10%
 *Updated after each plan completion*
 | Phase 01 P01 | 4min | 2 tasks | 12 files |
 | Phase 01 P02 | 3min | 2 tasks | 5 files |
+| Phase 02-render-pipeline P01 | 4min | 2 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,9 @@ Recent decisions affecting current work:
 - [Phase 01]: Lenis driven by GSAP ticker with autoRaf:false for single unified RAF loop
 - [Phase 01]: ScrollTrigger onUpdate writes to eraStore.setState for decoupled scroll consumption
 - [Phase 01]: Debounced resize handler (200ms) calls ScrollTrigger.refresh()
+- [Phase 02-01]: Perlin noise chosen over Voronoi for dissolve shader — organic continuous noise matches womb-birth metaphor
+- [Phase 02-01]: ShaderMaterial factory functions (not React components) so Plan 02 can instantiate in useFrame/useMemo without Hook constraints
+- [Phase 02-01]: computeBlendFactor early-return at eraProgress>=1.0 to avoid IEEE 754 floating-point imprecision at boundary
 
 ### Pending Todos
 
@@ -84,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T16:20:07.546Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-render-pipeline/02-CONTEXT.md
+Last session: 2026-03-10T16:45:04.651Z
+Stopped at: Completed 02-01-PLAN.md — logic layer and GPU shaders
+Resume file: None

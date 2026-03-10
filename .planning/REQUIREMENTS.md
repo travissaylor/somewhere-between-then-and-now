@@ -19,11 +19,11 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Render Pipeline
 
 - [ ] **RNDR-01**: RenderTarget A/B compositor renders two era scenes off-screen simultaneously during transitions
-- [ ] **RNDR-02**: Single EffectComposer applies all per-era post-processing in one merged GPU pass
-- [ ] **RNDR-03**: Visibility-based scene management (never unmount/remount era components) to prevent VRAM leaks
+- [x] **RNDR-02**: Single EffectComposer applies all per-era post-processing in one merged GPU pass
+- [x] **RNDR-03**: Visibility-based scene management (never unmount/remount era components) to prevent VRAM leaks
 - [ ] **RNDR-04**: Shader warmup via renderer.compile() during loading screen to prevent first-transition stutter
 - [ ] **RNDR-05**: Asset preloading with loading gate that blocks scroll until era assets are ready
-- [ ] **RNDR-06**: Predictive N+1 asset loading and N-2 disposal for memory management
+- [x] **RNDR-06**: Predictive N+1 asset loading and N-2 disposal for memory management
 
 ### Audio
 
@@ -127,11 +127,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-05 | Phase 1 | Complete |
 | FOUND-06 | Phase 1 | Complete |
 | RNDR-01 | Phase 2 | Pending |
-| RNDR-02 | Phase 2 | Pending |
-| RNDR-03 | Phase 2 | Pending |
+| RNDR-02 | Phase 2 | Complete |
+| RNDR-03 | Phase 2 | Complete |
 | RNDR-04 | Phase 2 | Pending |
 | RNDR-05 | Phase 2 | Pending |
-| RNDR-06 | Phase 2 | Pending |
+| RNDR-06 | Phase 2 | Complete |
 | AUDO-01 | Phase 3 | Pending |
 | AUDO-02 | Phase 3 | Pending |
 | AUDO-03 | Phase 3 | Pending |
