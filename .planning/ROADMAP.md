@@ -12,7 +12,7 @@ The project builds from the ground up in a strict dependency order: a working sc
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Scroll engine, era store, and responsive layout scaffold producing verified era progress values
+- [x] **Phase 1: Foundation** - Scroll engine, era store, and responsive layout scaffold producing verified era progress values (completed 2026-03-10)
 - [ ] **Phase 2: Render Pipeline** - RenderTarget A/B compositor, EffectComposer, and asset loading gate proved on one era
 - [ ] **Phase 3: Audio Engine** - Tone.js graph with gesture gate, scroll-reactive crossfading, and 13-zone architecture
 - [ ] **Phase 4: Eras — Origins** - Era environments 1-4 (Birth through The Divorce) built on proven scaffold
@@ -148,7 +148,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Not started | - |
+| 1. Foundation | 0/2 | Complete    | 2026-03-10 |
 | 2. Render Pipeline | 0/TBD | Not started | - |
 | 3. Audio Engine | 0/TBD | Not started | - |
 | 4. Eras — Origins | 0/TBD | Not started | - |
