@@ -5,6 +5,7 @@ export interface EraState {
   globalProgress: number;   // 0-1 across entire scroll
   currentEra: number;       // 0-12 integer
   eraProgress: number;      // 0-1 within current era
+  isScrollEnabled: boolean; // false until womb gate birth animation completes
 }
 
 // Vanilla store - accessible outside React (e.g., useFrame, GSAP callbacks)
@@ -12,6 +13,7 @@ export const eraStore = createStore<EraState>(() => ({
   globalProgress: 0,
   currentEra: 0,
   eraProgress: 0,
+  isScrollEnabled: false,
 }));
 
 // React hook bridge for components that need reactive updates

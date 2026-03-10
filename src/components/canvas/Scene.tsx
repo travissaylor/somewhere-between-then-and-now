@@ -1,16 +1,21 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
+import * as THREE from 'three';
+import Compositor from './Compositor';
+import WombGate from '@/components/loading/WombGate';
+import { useEraStore } from '@/store/eraStore';
 
-function PlaceholderContent() {
-  return (
-    <mesh>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#1a1a2e" />
-    </mesh>
-  );
-}
-
+/**
+ * Scene — the root R3F Canvas shell.
+ *
+ * Contains:
+ * - WombGate: heartbeat loading state until assets warm up, then birth animation
+ * - Compositor: A/B render target compositor for era dissolve transitions
+ *
+ * The Compositor takes over rendering once the WombGate signals birth complete
+ * (isScrollEnabled becomes true in eraStore).
+ */
 export default function Scene() {
   return (
     <Canvas
@@ -28,10 +33,37 @@ export default function Scene() {
         far: 1000,
         position: [0, 0, 5],
       }}
+      gl={{
+        antialias: true,
+        outputColorSpace: THREE.SRGBColorSpace,
+        toneMapping: THREE.ACESFilmicToneMapping,
+        toneMappingExposure: 1.0,
+      }}
+      onCreated={({ gl }) => {
+        gl.setClearColor(0x000000, 1);
+      }}
     >
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} />
-      <PlaceholderContent />
+      <SceneContents />
     </Canvas>
+  );
+}
+
+/**
+ * SceneContents — inner R3F component with access to Canvas context.
+ *
+ * Bridges eraStore → Compositor wombDone prop.
+ * WombGate and Compositor are always mounted; the womb quad renders
+ * on top of (or instead of) the compositor until birth completes.
+ */
+function SceneContents() {
+  const isScrollEnabled = useEraStore((s) => s.isScrollEnabled);
+
+  return (
+    <>
+      {/* WombGate: heartbeat → birth animation → unlocks scroll */}
+      <WombGate />
+      {/* Compositor: A/B render target era blend — activates after womb birth */}
+      <Compositor wombDone={isScrollEnabled} />
+    </>
   );
 }

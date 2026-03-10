@@ -20,6 +20,9 @@ export default function ScrollEngine() {
     });
     lenisRef.current = lenis;
 
+    // Start in stopped state — WombGate will unlock via eraStore.isScrollEnabled
+    lenis.stop();
+
     // Lenis scroll events update ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -35,6 +38,8 @@ export default function ScrollEngine() {
       start: 'top top',
       end: 'bottom bottom',
       onUpdate: (self) => {
+        // Belt-and-suspenders: skip store update if scroll not yet enabled
+        if (!eraStore.getState().isScrollEnabled) return;
         const { currentEra, eraProgress } = computeEraProgress(self.progress);
         eraStore.setState({
           globalProgress: self.progress,
@@ -42,6 +47,17 @@ export default function ScrollEngine() {
           eraProgress,
         });
       },
+    });
+
+    // Subscribe to isScrollEnabled changes from eraStore
+    const unsubscribe = eraStore.subscribe((state, prevState) => {
+      if (state.isScrollEnabled !== prevState.isScrollEnabled) {
+        if (state.isScrollEnabled) {
+          lenis.start();
+        } else {
+          lenis.stop();
+        }
+      }
     });
 
     // Debounced resize handler to refresh ScrollTrigger measurements
@@ -59,6 +75,7 @@ export default function ScrollEngine() {
       window.removeEventListener('resize', handleResize);
       gsap.ticker.remove(update);
       trigger.kill();
+      unsubscribe();
       lenis.destroy();
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
