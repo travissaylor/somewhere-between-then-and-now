@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 02-01-PLAN.md — logic layer and GPU shaders
-last_updated: "2026-03-10T16:45:04.654Z"
+stopped_at: Completed 02-02-PLAN.md — render pipeline wiring
+last_updated: "2026-03-10T16:52:29.781Z"
 last_activity: 2026-03-10 — Completed 01-02 scroll engine integration
 progress:
   total_phases: 10
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
   percent: 10
 ---
 
@@ -53,6 +53,7 @@ Progress: [█░░░░░░░░░] 10%
 | Phase 01 P01 | 4min | 2 tasks | 12 files |
 | Phase 01 P02 | 3min | 2 tasks | 5 files |
 | Phase 02-render-pipeline P01 | 4min | 2 tasks | 14 files |
+| Phase 02-render-pipeline P02 | 5min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - [Phase 02-01]: Perlin noise chosen over Voronoi for dissolve shader — organic continuous noise matches womb-birth metaphor
 - [Phase 02-01]: ShaderMaterial factory functions (not React components) so Plan 02 can instantiate in useFrame/useMemo without Hook constraints
 - [Phase 02-01]: computeBlendFactor early-return at eraProgress>=1.0 to avoid IEEE 754 floating-point imprecision at boundary
+- [Phase 02-02]: WombGate priority=2 over Compositor priority=1: higher useFrame priority runs after lower, womb quad paints over compositor during birth
+- [Phase 02-02]: Minimum 1800ms womb duration enforced for emotional heartbeat experience even with procedural (instant) asset loads
+- [Phase 02-02]: createPortal per era gives each era isolated THREE.Scene preventing light/camera bleed across render targets
 
 ### Pending Todos
 
@@ -88,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T16:45:04.651Z
-Stopped at: Completed 02-01-PLAN.md — logic layer and GPU shaders
+Last session: 2026-03-10T16:52:29.779Z
+Stopped at: Completed 02-02-PLAN.md — render pipeline wiring
 Resume file: None
