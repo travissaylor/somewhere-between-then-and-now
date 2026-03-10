@@ -27,12 +27,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Audio
 
-- [ ] **AUDO-01**: User gesture gate resumes AudioContext on first scroll/interaction (browser autoplay compliance)
+- [x] **AUDO-01**: User gesture gate resumes AudioContext on first scroll/interaction (browser autoplay compliance)
 - [x] **AUDO-02**: Tone.js audio graph with CrossFade nodes driven by eraProgress for scroll-reactive mixing
 - [x] **AUDO-03**: Gain scheduled via linearRampToValueAtTime (not direct .value assignment) to prevent click artifacts
 - [x] **AUDO-04**: 13 audio zones with crossfade overlap regions between adjacent eras
-- [ ] **AUDO-05**: Audio suspends on tab visibility change and resumes on return
-- [ ] **AUDO-06**: Graceful fallback for missing audio stems (experience works without audio if stems unavailable)
+- [x] **AUDO-05**: Audio suspends on tab visibility change and resumes on return
+- [x] **AUDO-06**: Graceful fallback for missing audio stems (experience works without audio if stems unavailable)
 
 ### Era Environments
 
@@ -132,12 +132,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RNDR-04 | Phase 2 | Complete |
 | RNDR-05 | Phase 2 | Complete |
 | RNDR-06 | Phase 2 | Complete |
-| AUDO-01 | Phase 3 | Pending |
+| AUDO-01 | Phase 3 | Complete |
 | AUDO-02 | Phase 3 | Complete |
 | AUDO-03 | Phase 3 | Complete |
 | AUDO-04 | Phase 3 | Complete |
-| AUDO-05 | Phase 3 | Pending |
-| AUDO-06 | Phase 3 | Pending |
+| AUDO-05 | Phase 3 | Complete |
+| AUDO-06 | Phase 3 | Complete |
 | ERA-01 | Phase 4 | Pending |
 | ERA-02 | Phase 4 | Pending |
 | ERA-03 | Phase 4 | Pending |
