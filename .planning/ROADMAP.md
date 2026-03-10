@@ -35,7 +35,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Major transition eras occupy visibly more scroll distance than connective-tissue eras (per-era weight config is active)
   4. Zustand era store updates are readable by any consumer component without direct scroll coupling
   5. Desktop and tablet viewports both render the fixed-position canvas without layout breakage
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 01-01-PLAN.md — Bootstrap project, era config, scroll math, Zustand store (with tests)
+- [ ] 01-02-PLAN.md — Scroll engine, R3F canvas, debug overlay, responsive layout
 
 ### Phase 2: Render Pipeline
 **Goal**: A single era scene renders correctly via the RenderTarget A/B compositor, proving the transition architecture and all GPU resource patterns before 13 eras are built
@@ -145,7 +148,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/2 | Not started | - |
 | 2. Render Pipeline | 0/TBD | Not started | - |
 | 3. Audio Engine | 0/TBD | Not started | - |
 | 4. Eras — Origins | 0/TBD | Not started | - |
