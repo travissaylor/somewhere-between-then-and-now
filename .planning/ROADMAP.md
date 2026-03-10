@@ -13,7 +13,7 @@ The project builds from the ground up in a strict dependency order: a working sc
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Scroll engine, era store, and responsive layout scaffold producing verified era progress values (completed 2026-03-10)
-- [x] **Phase 2: Render Pipeline** - RenderTarget A/B compositor, EffectComposer, and asset loading gate proved on one era (completed 2026-03-10)
+- [ ] **Phase 2: Render Pipeline** - RenderTarget A/B compositor, EffectComposer, and asset loading gate proved on one era
 - [ ] **Phase 3: Audio Engine** - Tone.js graph with gesture gate, scroll-reactive crossfading, and 13-zone architecture
 - [ ] **Phase 4: Eras — Origins** - Era environments 1-4 (Birth through The Divorce) built on proven scaffold
 - [ ] **Phase 5: Eras — Youth and Identity** - Era environments 5-7 (Teenage Years through Identity Years)
@@ -50,10 +50,11 @@ Plans:
   3. Switching eras does not cause VRAM to grow — scenes are hidden, not unmounted
   4. No first-transition stutter after the loading screen clears (shader warmup via `renderer.compile()` is active)
   5. Next era's assets begin loading predictively; previous era's assets dispose after the N-2 threshold
-**Plans**: 2 plans
+**Plans**: 3 plans
 Plans:
-- [ ] 02-01-PLAN.md — Compositor logic, memory manager, GPU tier detection, GLSL shaders, ShaderMaterial wrappers
-- [ ] 02-02-PLAN.md — Era scenes, A/B compositor, womb loading gate, scroll lock, shader warmup, visual verification
+- [x] 02-01-PLAN.md — Compositor logic, memory manager, GPU tier detection, GLSL shaders, ShaderMaterial wrappers
+- [x] 02-02-PLAN.md — Era scenes, A/B compositor, womb loading gate, scroll lock, shader warmup, visual verification
+- [ ] 02-03-PLAN.md — Gap closure: fix shader warmup to target portal scenes, prove EffectComposer integration
 
 ### Phase 3: Audio Engine
 **Goal**: Scroll-reactive audio crossfading works correctly across multiple zones with no click artifacts or browser autoplay violations
@@ -151,8 +152,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Complete    | 2026-03-10 |
-| 2. Render Pipeline | 2/2 | Complete   | 2026-03-10 |
+| 1. Foundation | 2/2 | Complete    | 2026-03-10 |
+| 2. Render Pipeline | 2/3 | Gap closure   | - |
 | 3. Audio Engine | 0/TBD | Not started | - |
 | 4. Eras — Origins | 0/TBD | Not started | - |
 | 5. Eras — Youth and Identity | 0/TBD | Not started | - |
