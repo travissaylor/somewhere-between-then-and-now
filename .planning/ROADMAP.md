@@ -50,7 +50,10 @@ Plans:
   3. Switching eras does not cause VRAM to grow — scenes are hidden, not unmounted
   4. No first-transition stutter after the loading screen clears (shader warmup via `renderer.compile()` is active)
   5. Next era's assets begin loading predictively; previous era's assets dispose after the N-2 threshold
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 02-01-PLAN.md — Compositor logic, memory manager, GPU tier detection, GLSL shaders, ShaderMaterial wrappers
+- [ ] 02-02-PLAN.md — Era scenes, A/B compositor, womb loading gate, scroll lock, shader warmup, visual verification
 
 ### Phase 3: Audio Engine
 **Goal**: Scroll-reactive audio crossfading works correctly across multiple zones with no click artifacts or browser autoplay violations
@@ -149,7 +152,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 0/2 | Complete    | 2026-03-10 |
-| 2. Render Pipeline | 0/TBD | Not started | - |
+| 2. Render Pipeline | 0/2 | Not started | - |
 | 3. Audio Engine | 0/TBD | Not started | - |
 | 4. Eras — Origins | 0/TBD | Not started | - |
 | 5. Eras — Youth and Identity | 0/TBD | Not started | - |
