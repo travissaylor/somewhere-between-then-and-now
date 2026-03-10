@@ -43,7 +43,7 @@ interface WombGateProps {
  */
 export default function WombGate({ portalScenes }: WombGateProps) {
   const { gl, camera } = useThree();
-  const { active, progress } = useProgress();
+  const { active, progress, total } = useProgress();
 
   const wombStateRef = useRef<WombState>('LOADING');
   const birthStartTimeRef = useRef<number>(0);
@@ -82,9 +82,10 @@ export default function WombGate({ portalScenes }: WombGateProps) {
 
   // Track when assets are ready + minimum duration has elapsed
   useEffect(() => {
-    // With procedural content, progress hits 100 quickly.
-    // We also enforce a minimum womb duration so the heartbeat registers emotionally.
-    if (!active && progress >= 100) {
+    // With procedural content there may be zero assets tracked by DefaultLoadingManager,
+    // so progress stays 0 and never reaches 100. Treat "not active + nothing to load" as ready.
+    const isLoaded = !active && (progress >= 100 || total === 0);
+    if (isLoaded) {
       const elapsed = Date.now() - wombStartMsRef.current;
       const remaining = Math.max(0, MIN_WOMB_DURATION_MS - elapsed);
       const timer = setTimeout(() => {
@@ -92,7 +93,7 @@ export default function WombGate({ portalScenes }: WombGateProps) {
       }, remaining);
       return () => clearTimeout(timer);
     }
-  }, [active, progress]);
+  }, [active, progress, total]);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
