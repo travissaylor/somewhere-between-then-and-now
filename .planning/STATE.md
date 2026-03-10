@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-10T15:32:19.041Z"
-last_activity: 2026-03-10 — Roadmap created, 10 phases mapped to 43 v1 requirements
+status: executing
+stopped_at: Completed 01-01-PLAN.md
+last_updated: "2026-03-10T15:51:08.961Z"
+last_activity: 2026-03-10 — Completed 01-01 bootstrap and scroll math
 progress:
   total_phases: 10
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 2
+  completed_plans: 1
   percent: 0
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-03-10)
 ## Current Position
 
 Phase: 1 of 10 (Foundation)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-10 — Roadmap created, 10 phases mapped to 43 v1 requirements
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-03-10 — Completed 01-01 bootstrap and scroll math
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -50,6 +50,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01 P01 | 4min | 2 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -62,6 +63,9 @@ Recent decisions affecting current work:
 - [Roadmap]: PHOT-02 (the lamp) assigned to Phase 6 (Love, Loss, Rebuilding) because it is intrinsic to eras 8-9
 - [Roadmap]: Audio (Phase 3) runs parallel to Render Pipeline (Phase 2) — both depend only on Phase 1
 - [Roadmap]: Post-processing applied in Phase 9 after all eras and transitions exist so grading can be tuned holistically
+- [Phase 01]: Zustand vanilla store via createStore from zustand/vanilla for useFrame safety
+- [Phase 01]: ERA_CONFIG scaffold weights: major transitions 2-3x, connective 1.0, chaos 0.5 -- authorial tuning deferred
+- [Phase 01]: RootLayout as Server Component -- no use client needed for layout
 
 ### Pending Todos
 
@@ -76,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T15:32:19.038Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-foundation/01-CONTEXT.md
+Last session: 2026-03-10T15:51:08.958Z
+Stopped at: Completed 01-01-PLAN.md
+Resume file: None
