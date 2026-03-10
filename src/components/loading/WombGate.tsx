@@ -20,6 +20,15 @@ const MIN_WOMB_DURATION_MS = 1800;
 // Birth animation duration (seconds for useFrame time math)
 const BIRTH_DURATION_S = 1.5;
 
+interface WombGateProps {
+  /**
+   * The actual portal THREE.Scene instances created by Compositor.
+   * Passed from Scene.tsx via ref-bridging so compileAsync warms up era shaders
+   * (not the empty root R3F scene which contains no era meshes).
+   */
+  portalScenes?: THREE.Scene[];
+}
+
 /**
  * WombGate — the loading gate rendered inside the R3F Canvas.
  *
@@ -28,11 +37,12 @@ const BIRTH_DURATION_S = 1.5;
  *   LOADING  → assets 100% loaded AND min duration elapsed → BIRTH
  *   BIRTH    → birth animation finishes → DONE → eraStore.isScrollEnabled = true
  *
- * Shader warmup (compileAsync) runs during BIRTH so first transition is stutter-free.
+ * Shader warmup (compileAsync) runs during BIRTH, targeting the portal era scenes
+ * (not the empty root R3F scene) so first transition is stutter-free.
  * No text, no progress bars — pure visceral pulse.
  */
-export default function WombGate() {
-  const { gl, camera, scene } = useThree();
+export default function WombGate({ portalScenes }: WombGateProps) {
+  const { gl, camera } = useThree();
   const { active, progress } = useProgress();
 
   const wombStateRef = useRef<WombState>('LOADING');
@@ -125,13 +135,16 @@ export default function WombGate() {
       mat.uniforms.uIntensity.value = intensity;
       mat.uniforms.uBirthProgress.value = birthProgress;
 
-      // Shader warmup: compile era shaders during birth animation
-      // This provides natural time for GPU shader compilation
+      // Shader warmup: compile era shaders during birth animation.
+      // Targets the actual portal era scenes (where era meshes live) not the empty
+      // root R3F scene. This ensures compileAsync warms up the real era shaders.
       if (!warmupDoneRef.current && birthProgress > 0.1) {
         warmupDoneRef.current = true;
-        // Compile the main scene shaders asynchronously during the birth animation
         if (gl.compileAsync) {
-          gl.compileAsync(scene, camera).catch(() => {
+          const scenes = portalScenes ?? [];
+          Promise.all(
+            scenes.map((s) => gl.compileAsync(s, camera))
+          ).catch(() => {
             // Non-fatal — browser will compile on first render if needed
           });
         }

@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import Compositor from './Compositor';
@@ -51,19 +52,55 @@ export default function Scene() {
 /**
  * SceneContents — inner R3F component with access to Canvas context.
  *
- * Bridges eraStore → Compositor wombDone prop.
+ * Bridges:
+ * - eraStore → Compositor wombDone prop
+ * - Compositor portal scene refs → WombGate portalScenes prop (for shader warmup)
+ *
+ * The portalScenesRef is populated by Compositor on mount and read by WombGate
+ * during its birth animation to call gl.compileAsync on the actual era scenes
+ * (not the empty root R3F scene, which contains no era meshes).
+ *
  * WombGate and Compositor are always mounted; the womb quad renders
  * on top of (or instead of) the compositor until birth completes.
  */
 function SceneContents() {
   const isScrollEnabled = useEraStore((s) => s.isScrollEnabled);
 
+  // Bridge portal scene refs from Compositor to WombGate.
+  // Compositor writes its portalScenes[] into this ref on mount.
+  // WombGate reads this ref during the birth animation for shader warmup.
+  const portalScenesRef = useRef<THREE.Scene[]>([]);
+
+  // Force a re-render once Compositor has populated the ref so WombGate
+  // receives the actual scene instances (not the initial empty array).
+  const [portalScenesReady, setPortalScenesReady] = useState(false);
+  const onPortalScenesPopulated = useRef(() => {
+    setPortalScenesReady(true);
+  });
+
+  // Wrap the ref so Compositor can signal when it has populated it
+  const bridgeRef = useRef<THREE.Scene[]>([]);
+  const wrappedRef = useRef({
+    get current() { return bridgeRef.current; },
+    set current(v: THREE.Scene[]) {
+      bridgeRef.current = v;
+      if (v.length > 0) {
+        onPortalScenesPopulated.current();
+      }
+    },
+  });
+
+  // Sync bridgeRef into portalScenesRef for WombGate consumption
+  useEffect(() => {
+    portalScenesRef.current = bridgeRef.current;
+  }, [portalScenesReady]);
+
   return (
     <>
       {/* WombGate: heartbeat → birth animation → unlocks scroll */}
-      <WombGate />
+      <WombGate portalScenes={portalScenesReady ? portalScenesRef.current : []} />
       {/* Compositor: A/B render target era blend — activates after womb birth */}
-      <Compositor wombDone={isScrollEnabled} />
+      <Compositor wombDone={isScrollEnabled} portalScenesRef={wrappedRef.current} />
     </>
   );
 }
