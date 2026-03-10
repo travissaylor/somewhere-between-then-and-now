@@ -10,11 +10,11 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Foundation
 
 - [x] **FOUND-01**: Next.js app bootstrapped with React Three Fiber canvas that renders without SSR errors
-- [ ] **FOUND-02**: Lenis smooth scroll integrated with GSAP ScrollTrigger as sole scroll authority
-- [ ] **FOUND-03**: Scroll-to-progress engine produces normalized globalProgress (0–1), currentEra (0–12), and eraProgress (0–1) values
+- [x] **FOUND-02**: Lenis smooth scroll integrated with GSAP ScrollTrigger as sole scroll authority
+- [x] **FOUND-03**: Scroll-to-progress engine produces normalized globalProgress (0–1), currentEra (0–12), and eraProgress (0–1) values
 - [x] **FOUND-04**: Zustand era store distributes scroll state to all consuming systems
 - [x] **FOUND-05**: Per-era scroll weight config allows different eras to occupy different scroll distances (major transitions get 2–3x)
-- [ ] **FOUND-06**: Desktop and tablet responsive layout with fixed-position R3F canvas
+- [x] **FOUND-06**: Desktop and tablet responsive layout with fixed-position R3F canvas
 
 ### Render Pipeline
 
@@ -121,11 +121,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | FOUND-01 | Phase 1 | Complete |
-| FOUND-02 | Phase 1 | Pending |
-| FOUND-03 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Complete |
+| FOUND-03 | Phase 1 | Complete |
 | FOUND-04 | Phase 1 | Complete |
 | FOUND-05 | Phase 1 | Complete |
-| FOUND-06 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Complete |
 | RNDR-01 | Phase 2 | Pending |
 | RNDR-02 | Phase 2 | Pending |
 | RNDR-03 | Phase 2 | Pending |
