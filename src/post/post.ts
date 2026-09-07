@@ -90,7 +90,7 @@ const fragmentShader = /* glsl */ `
     vec2 seed = vec2(uTime * 127.1, uTime * 311.7);
     float noise = hash(cell + seed) * 2.0 - 1.0;
     float grainWeight = 1.0 - clamp(luma(color), 0.0, 1.0) * 0.5;
-    color += noise * uGrain * 0.18 * grainWeight;
+    color += noise * uGrain * 0.07 * grainWeight;
     color *= 1.0 + (hash(seed) * 2.0 - 1.0) * 0.02 * uFlicker;
 
     // 8. Fade after all texture so the ending reaches true black.

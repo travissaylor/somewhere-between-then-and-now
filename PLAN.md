@@ -54,7 +54,7 @@ because no audio existed; bugs logged in verification docs and left.
 
 | # | Slice | Status |
 |---|---|---|
-| 1 | Skeleton: entry, all 13 eras as light, palette, grain, and drone; walking camera; forward-only scroll; the ending; deploy pipeline | not started |
+| 1 | Skeleton: entry, all 13 eras as light, palette, grain, and drone; walking camera; forward-only scroll; the ending; deploy pipeline | built; awaiting checkpoint (Cloudflare login pending) |
 | 2 | Eras 01 to 04 at depth, including the divorce set piece | not started |
 | 3 | Eras 05 to 07, including the college and first-apartment set pieces | not started |
 | 4 | Eras 08 to 10, including the breakup and Pittsburgh set pieces | not started |

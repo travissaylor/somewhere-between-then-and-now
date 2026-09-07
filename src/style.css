@@ -57,12 +57,14 @@ html, body {
 
 .entry-title {
   font-family: 'Times New Roman', Times, 'Baskerville', 'Georgia', serif;
-  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-size: clamp(1.5rem, 2.6vw, 2.6rem);
   font-weight: 300;
   letter-spacing: 0.14em;
   color: rgba(240, 235, 230, 0.94);
   margin: 0;
   line-height: 1.35;
+  max-width: 90vw;
+  text-wrap: balance;
 }
 
 .entry-begin {

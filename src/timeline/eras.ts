@@ -15,7 +15,7 @@ export const ERAS: Era[] = [
       bg: hex(0x3a2208), fogDensity: 0.9,
       light: hex(0xffd27a), lightIntensity: 1.0, lightHeight: 1.6,
       ground: hex(0x3a2208), walls: 0, wallsHeight: 1, wallColor: hex(0x3a2208),
-      grain: 0.6, grainSize: 2.5, warmth: 0.6, saturation: 0.9, contrast: 0.9, vignette: 0.65, blur: 0.5,
+      grain: 0.45, grainSize: 2.0, warmth: 0.6, saturation: 0.9, contrast: 0.9, vignette: 0.65, blur: 0.5,
       tilt: 0, walkSpeed: 0.4, stillness: 0.2, speedSensitivity: 0.1,
       drone: { root: 55, interval: 7, brightness: 0.15, noise: 0.1, sub: 0.6, heartbeat: 1, bpm: 70, drive: 0, volume: 0.7 },
     },
@@ -69,7 +69,7 @@ export const ERAS: Era[] = [
     params: {
       bg: hex(0x1a2560), fogDensity: 0.08,
       light: hex(0xffb347), lightIntensity: 2.8, lightHeight: 7,
-      ground: hex(0x2f7a3a), walls: 0.2, wallsHeight: 2, wallColor: hex(0x8a1f2e),
+      ground: hex(0x2f7a3a), walls: 0, wallsHeight: 2, wallColor: hex(0x8a1f2e),
       grain: 0.1, grainSize: 1.0, warmth: 0.2, saturation: 1.6, contrast: 1.2, vignette: 0.25, blur: 0.2,
       tilt: 0, walkSpeed: 2.0, stillness: 0, speedSensitivity: 0.6,
       drone: { root: 65.4, interval: 7, brightness: 0.9, noise: 0.6, sub: 0.6, heartbeat: 0, bpm: 128, drive: 0.9, volume: 0.9 },
@@ -144,10 +144,10 @@ export const ERAS: Era[] = [
   {
     id: '13', title: 'Somewhere Between Then and Now', weight: 1.2,
     params: {
-      bg: hex(0x6a7a8a), fogDensity: 0.2,
+      bg: hex(0x6a7a8a), fogDensity: 0.04,
       light: hex(0xffd9a0), lightIntensity: 1.2, lightHeight: 1.0,
       ground: hex(0x5a6570), walls: 0, wallsHeight: 1, wallColor: hex(0x6a7a8a),
-      grain: 0.25, grainSize: 3.0, warmth: 0.1, saturation: 0.75, contrast: 0.95, vignette: 0.5, blur: 0.1,
+      grain: 0.2, grainSize: 2.0, warmth: 0.1, saturation: 0.75, contrast: 0.95, vignette: 0.5, blur: 0.1,
       tilt: 0, walkSpeed: 1.0, stillness: 0, speedSensitivity: 0.05,
       drone: { root: 220, interval: 0, brightness: 0.5, noise: 0.05, sub: 0, heartbeat: 0, bpm: 0, drive: 0, volume: 0.45 },
     },

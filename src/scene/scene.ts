@@ -44,7 +44,7 @@ export function createScene(canvas: HTMLCanvasElement): SceneModule {
   const fog = new FogExp2(bgColor, 0.02);
   scene.fog = fog;
 
-  const hemisphere = new HemisphereLight(0xffffff, 0x000000, 0.35);
+  const hemisphere = new HemisphereLight(0xffffff, 0x000000, 0.6);
   scene.add(hemisphere);
 
   const light = createLight(scene);

@@ -20,7 +20,11 @@ import {
   PointsMaterial,
   Scene,
   SphereGeometry,
+  Sprite,
+  SpriteMaterial,
   SRGBColorSpace,
+  AdditiveBlending,
+  CanvasTexture,
   MathUtils,
 } from 'three';
 import type { FrameState, RGB } from '../state';
@@ -34,15 +38,39 @@ export function setSRGB(color: Color, rgb: RGB): void {
   color.setRGB(rgb[0], rgb[1], rgb[2], SRGBColorSpace);
 }
 
-/** The Light: a point light plus its visible emissive body. Grows from darkness at begin. */
+/** A soft radial disc texture, built once, shared by the halo and the motes. */
+function radialTexture(size: number, inner: number): CanvasTexture {
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  g.addColorStop(0, 'rgba(255,255,255,1)');
+  g.addColorStop(inner, 'rgba(255,255,255,0.35)');
+  g.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  return new CanvasTexture(canvas);
+}
+
+/** The Light: a point light, its emissive body, and a soft halo. Grows from darkness at begin. */
 export function createLight(scene: Scene): CastPiece {
   const AHEAD = 7;
-  const HORIZON_AHEAD = 60;
+  const HORIZON_AHEAD = 40;
   const HORIZON_Y = 1.0;
+  const INTENSITY = 40;
 
-  const pointLight = new PointLight(0xffffff, 0, 40, 2);
+  const pointLight = new PointLight(0xffffff, 0, 60, 2);
   const body = new Mesh(new SphereGeometry(0.18, 16, 16), new MeshBasicMaterial());
-  scene.add(pointLight, body);
+  const haloMaterial = new SpriteMaterial({
+    map: radialTexture(128, 0.25),
+    blending: AdditiveBlending,
+    transparent: true,
+    depthWrite: false,
+    opacity: 0.85,
+  });
+  const halo = new Sprite(haloMaterial);
+  scene.add(pointLight, body, halo);
 
   return {
     update(camera, state) {
@@ -53,14 +81,24 @@ export function createLight(scene: Scene): CastPiece {
       const bloom = MathUtils.smoothstep(state.sinceBegin, 0, 4);
       const breathe = 1 + 0.05 * Math.sin(state.elapsed * 0.9) * (1 - params.stillness);
 
+      // Keep a high Light inside the frame by pushing it further ahead, and keep it
+      // clear of a low ceiling so it doesn't burn a glare spot into the slab.
+      let height = params.lightHeight;
+      if (params.walls > 0.01) height = Math.min(height, 3.0 * params.wallsHeight - 0.7);
+      const baseAhead = AHEAD + Math.max(0, height - 3) * 2;
+
       const inHorizonEra = state.eraIndex === 12;
-      const ahead = inHorizonEra ? MathUtils.lerp(AHEAD, HORIZON_AHEAD, state.eraT) : AHEAD;
-      const y = inHorizonEra ? MathUtils.lerp(params.lightHeight, HORIZON_Y, state.eraT) : params.lightHeight;
+      const ahead = inHorizonEra ? MathUtils.lerp(baseAhead, HORIZON_AHEAD, state.eraT) : baseAhead;
+      const y = inHorizonEra ? MathUtils.lerp(height, HORIZON_Y, state.eraT) : height;
 
       pointLight.position.set(camera.position.x, y, camera.position.z - ahead);
       body.position.copy(pointLight.position);
-      pointLight.intensity = params.lightIntensity * 6 * bloom * breathe;
+      halo.position.copy(pointLight.position);
+      pointLight.intensity = params.lightIntensity * INTENSITY * bloom * breathe;
       body.scale.setScalar(bloom);
+      setSRGB(haloMaterial.color, params.light);
+      const haloSize = (1.2 + params.lightIntensity * 0.8) * bloom * breathe;
+      halo.scale.set(haloSize, haloSize, 1);
     },
   };
 }
@@ -234,11 +272,11 @@ export function createLamp(scene: Scene): CastPiece {
 
 /** The Horizon: a bright line far ahead, seen only in the final era. */
 export function createHorizon(scene: Scene): CastPiece {
-  const AHEAD = 120;
+  const AHEAD = 40;
   const Y = 1.0;
 
-  const material = new MeshBasicMaterial({ transparent: true, opacity: 0 });
-  const mesh = new Mesh(new PlaneGeometry(400, 0.04), material);
+  const material = new MeshBasicMaterial({ transparent: true, opacity: 0, fog: false });
+  const mesh = new Mesh(new PlaneGeometry(400, 0.03), material);
   scene.add(mesh);
 
   return {
@@ -265,14 +303,21 @@ export function createMotes(scene: Scene): CastPiece {
   for (let i = 0; i < COUNT; i++) {
     positions[i * 3] = (Math.random() - 0.5) * BOX_W;
     positions[i * 3 + 1] = Math.random() * BOX_H;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * BOX_D;
+    positions[i * 3 + 2] = -Math.random() * BOX_D + 2;
   }
 
   const geometry = new BufferGeometry();
   const attribute = new BufferAttribute(positions, 3);
   geometry.setAttribute('position', attribute);
 
-  const material = new PointsMaterial({ size: 0.05, transparent: true, opacity: 0.6, depthWrite: false });
+  const material = new PointsMaterial({
+    size: 0.06,
+    map: radialTexture(32, 0.4),
+    transparent: true,
+    opacity: 0.5,
+    depthWrite: false,
+    alphaTest: 0.02,
+  });
   const points = new Points(geometry, material);
   scene.add(points);
 
