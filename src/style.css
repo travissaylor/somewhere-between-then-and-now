@@ -1,5 +1,379 @@
-/* STUB. Replaced by the ui unit. */
-html, body { margin: 0; height: 100%; background: #000; color: #eee; overflow: hidden; }
-#stage { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
-#ui { position: fixed; inset: 0; pointer-events: none; }
-#ui > * { pointer-events: auto; }
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  color: #eee;
+  overflow: hidden;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#ui > * {
+  pointer-events: auto;
+}
+
+/* Entry Overlay */
+.entry {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 2.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.entry.dismissing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.entry-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 960px;
+}
+
+.entry-title {
+  font-family: 'Times New Roman', Times, 'Baskerville', 'Georgia', serif;
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: rgba(240, 235, 230, 0.94);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.entry-begin {
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+  font-family: 'Times New Roman', Times, 'Baskerville', 'Georgia', serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: rgba(240, 235, 230, 0.65);
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(240, 235, 230, 0.35);
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+.entry-begin:hover,
+.entry-begin:focus-visible {
+  color: rgba(240, 235, 230, 0.95);
+  text-decoration-color: rgba(240, 235, 230, 0.85);
+}
+
+.entry-notice {
+  margin-top: clamp(2rem, 5vh, 3rem);
+  font-family: 'Times New Roman', Times, 'Baskerville', 'Georgia', serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  color: rgba(240, 235, 230, 0.55);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Ending Overlay */
+.ending {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 1.2s ease-in;
+}
+
+.ending.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ending-title {
+  font-family: 'Times New Roman', Times, 'Baskerville', 'Georgia', serif;
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: rgba(240, 235, 230, 0.94);
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+  line-height: 1.35;
+  opacity: 0;
+  transition: opacity 1.8s ease-in 1.2s;
+}
+
+.ending.visible .ending-title {
+  opacity: 1;
+}
+
+/* Debug Panel */
+.debug-panel {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  width: 320px;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background: rgba(12, 12, 14, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #d1d5db;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.debug-panel.debug-hidden {
+  display: none !important;
+}
+
+.debug-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.debug-section {
+  margin-bottom: 10px;
+}
+
+.debug-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+
+.debug-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 8px;
+}
+
+.debug-row {
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.debug-row.full-width {
+  grid-column: span 2;
+}
+
+.debug-label {
+  color: #9ca3af;
+}
+
+.debug-value {
+  color: #f3f4f6;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Audio meter bars */
+.debug-meters {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.debug-meter-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.debug-meter-label {
+  width: 44px;
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+.debug-meter-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.debug-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: #60a5fa;
+  border-radius: 2px;
+  transition: width 0.08s ease-out;
+}
+
+.debug-meter-val {
+  width: 28px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+/* Progress range */
+.debug-range {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 4px 0;
+  accent-color: #60a5fa;
+  cursor: pointer;
+}
+
+/* Era jump buttons */
+.debug-era-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  max-height: 130px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.debug-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #eee;
+  font-family: inherit;
+  font-size: 9.5px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+.debug-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.debug-btn:active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Weights */
+.debug-weights {
+  max-height: 130px;
+  overflow-y: auto;
+  padding-right: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.debug-weight-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.debug-weight-label {
+  width: 100px;
+  font-size: 9.5px;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.debug-weight-row input[type="range"] {
+  flex: 1;
+  margin: 0;
+  accent-color: #60a5fa;
+  cursor: pointer;
+}
+
+.debug-weight-val {
+  width: 28px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+/* Scrollbars */
+.debug-panel::-webkit-scrollbar,
+.debug-era-buttons::-webkit-scrollbar,
+.debug-weights::-webkit-scrollbar {
+  width: 4px;
+}
+
+.debug-panel::-webkit-scrollbar-thumb,
+.debug-era-buttons::-webkit-scrollbar-thumb,
+.debug-weights::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .entry {
+    transition-duration: 0.4s;
+  }
+  .ending {
+    transition-duration: 0.2s;
+  }
+  .ending-title {
+    transition: opacity 0.3s ease-in 0.1s;
+  }
+  .debug-meter-fill {
+    transition: none;
+  }
+}
